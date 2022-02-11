@@ -13,7 +13,6 @@ register = template.Library()
 @register.inclusion_tag("blog/post-list.html")
 def recent_posts(post):
   posts = Post.objects.exclude(pk=post.pk)[:5]
-  print(posts)
   return {"posts": posts, "title": "Recent Posts"}
 
 
@@ -41,7 +40,6 @@ def author_details(author, current_user=None):
     # return empty string as safe default
     return ""
 
-  print(f"{author}, {current_user}")
   if author == current_user:
     return format_html("<strong>me</strong>")
 
